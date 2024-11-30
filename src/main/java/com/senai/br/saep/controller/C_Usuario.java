@@ -3,8 +3,6 @@ package com.senai.br.saep.controller;
 import com.senai.br.saep.model.M_Usuario;
 import com.senai.br.saep.service.S_Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +13,10 @@ public class C_Usuario {
 
     @Autowired
     private S_Usuario sUsuario;
-
-    // Endpoint para mostrar o formulário de cadastro
+    
     @GetMapping("/cadastro")
-    public String mostrarCadastro() {
-        return "cadastro";  // nome do arquivo HTML
+    public String mostrarCadastro(Model model) {
+        return "cadastro";
     }
 
     // Endpoint para processar o cadastro
@@ -33,7 +30,6 @@ public class C_Usuario {
 
         M_Usuario usuarioSalvo = sUsuario.salvarUsuario(usuario);
         model.addAttribute("usuario", usuarioSalvo);
-        return "cadastro_sucesso"; // página de sucesso, você deve criar essa página
+        return "cadastro/cadastro"; // página de sucesso, você deve criar essa página
     }
 }
-
